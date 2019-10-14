@@ -10,10 +10,12 @@
 
 
 - name: Deploying WebApplications
-  hosts: all
-  become_user: root
+  hosts: localhost ## FIXME: change back to all
+  become_user: vagrant
   become: true
   become_method: sudo
+
+  strategy: debug
 
   gather_facts: no
 
@@ -24,6 +26,5 @@
 
 
   ## FIXME: Copy code to the web application
-  
-  - include: webapp.yml
+- include: webapp.yml
 ...

@@ -94,7 +94,7 @@ Vagrant.configure("2") do |config|
     ansible.verbose = true
     ansible.install = true  # installs ansible (and hence python on VM)
     ansible.limit = "all"
-    ansible.inventory_path = "MyInventory"  # inventory file
+    ansible.inventory_path = "hosts"  # inventory file
     #ansible.start_at_task = "Master File acting on Horizon VM"
   end
 end

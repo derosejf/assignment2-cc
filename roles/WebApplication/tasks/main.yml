@@ -2,8 +2,12 @@
 #
 # Main script for deploying the front end webserver.
 
-## set up the github repository and 
-- include: copy_code.yml
+- name: Install packages
+   apt:
+     name: common_packages
+     state: latest  # latest version
 
+## set up the github repository and template? (maybe)
+#- include: copy_code.yml
 
 ...

@@ -1,0 +1,24 @@
+---
+#
+# Script main to call the roles for the WebApp and DBServer. Really just defines
+# variables and executes roles
+
+- hosts: localhost
+  become_user: root
+  become: true
+  become_method: sudo
+
+  vars:
+    - path: https://github.com/doc-vu/phpMySQLapp.git
+
+      #ubuntu_php_packages: ['libapache2-mod-php', 'php', 'php-fym', 'php-mysql']
+
+      common_packages:
+        - git
+        - mysql-server
+        - build-essential
+        - python-pip
+
+  #- roles:
+  #  - WebApplication
+...
