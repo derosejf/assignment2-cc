@@ -1,0 +1,22 @@
+---
+#
+# Main site script, executes the base level installs on the main virtual machine.
+# Spawns 2 VMs in the cloud (IPs, etc.) and pushes relevant scripts to the
+# Web Server
+
+- name: Deploying WebApplications
+  hosts: all
+  become_user: root
+  become: true
+  become_method: sudo
+
+  gather_facts: no
+
+  ## Install python all machines
+  pre_tasks:
+    - name: install python
+      raw: test -e /usr/bin/python || (apt -y update && apt install -y python)
+
+  ## Spawn VMS
+  - include: webapp.yml
+...

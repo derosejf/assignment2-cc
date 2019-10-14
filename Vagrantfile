@@ -90,7 +90,7 @@ Vagrant.configure("2") do |config|
   # /vagrant directory (which is the same directory on your host that has
   # the vagrantfile but is mounted as /vagrant in the guest machine)
   config.vm.provision "ansible_local" do |ansible|
-    ansible.playbook = "playbook_master_install.yml"
+    ansible.playbook = "site.yml"
     ansible.verbose = true
     ansible.install = true  # installs ansible (and hence python on VM)
     ansible.limit = "all"
