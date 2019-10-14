@@ -1,0 +1,52 @@
+---
+#
+# EECS 4287/5287: Principles of Cloud Computing
+# Author: Aniruddha Gokhale
+# Created: Fall 2018
+#
+# This playbook is our test master file for installing things
+# on VMs. 
+
+  #####################################################
+  ### Play 1: first do all the things for the local VM
+  #####################################################
+  - name: "Master File acting on Local VM"
+    hosts: MyLocalVMs         # specified in the MyInventory file
+    remote_user:  vagrant     # note that the user is vagrant for the
+                              # vagrant-created VM
+
+    strategy: debug
+
+    ### All the tasks related to the local VM ###
+    tasks:  
+    
+      - name: "install python"
+        raw: apt-get install -y python
+        become: yes
+
+    # first install a bunch of packages on the local
+    # vagrant created VM
+      - include: playbook_install_common.yml
+    handlers:
+      - name: restart apache2
+        service: name=apache2 state=restarted
+        become: yes
+
+  ###########################################
+  # Play 2: Now install packages on chameleon vm
+  ###########################################
+#  - name: "Master File installing basic packages on Chameleon VM"
+#    hosts: MyChameleonVMs       # specified in the MyInventory file
+#    remote_user:  cc          # note that the user is cc for the
+#                              # chameleon vm
+#    strategy: debug
+#    become: yes               # run as sudo
+#    gather_facts: no          # do not gather facts from remote machine
+
+    ### All the tasks related to the Chameleon VM ###
+#    tasks:  
+
+    # first install a bunch of packages on the chameleon VM
+#    - include: playbook_install_common.yml
+...
+

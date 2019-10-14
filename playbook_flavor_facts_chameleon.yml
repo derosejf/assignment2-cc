@@ -1,0 +1,26 @@
+---
+# Author: Aniruddha Gokhale
+# CS4287/5287 Principles of Cloud Computing
+# Created: Fall 2018
+#
+# Taken verbose from the sample code on the web and modified for my purpose
+# https://docs.ansible.com/ansible/2.6/modules/os_image_facts_module.html
+#
+  - name: "Gather facts about all flavors on Chameleon Cloud"
+    hosts: MyLocalVMs  # this is an alias from my Ansible inventory file
+    tasks:  # this play has 2 tasks: gathering the flavors and printing them
+      # task 1
+      - name: "Invoking os_flavor_facts to search for all flavors supported by Chameleon"
+        os_flavor_facts:   # this is the module (see documentation on Ansible openstack modules)
+            auth:  # this is the authentication process
+              # use the following identity URL
+              auth_url: https://openstack.tacc.chameleoncloud.org:5000/v2.0
+              username:  <put your chameleon username here>
+              password:  <put your chameleon password here>
+              project_name: CH-819381
+
+      # task 2
+      - name: Print the list of names
+        debug:
+            var: openstack_flavors
+...

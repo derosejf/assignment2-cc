@@ -1,0 +1,29 @@
+---
+#
+# EECS 4287/5287: Principles of Cloud Computing
+# Author: Aniruddha Gokhale
+# Created: Fall 2016
+# Modified: Fall 2018
+#
+# This is a playbook intended to be included by another playbook. It demonstrates
+# a way to define a reusable playbook.  Here, this file will install the needed packages.
+# Since, we will need these in all our VMs, we make this a reusable playbook.
+#
+ - name: Install a bunch of packages via apt
+   apt:
+    name: "{{ item }}"
+    state: latest  # latest version
+    update_cache: yes  # essentially, run apt-get update first
+   with_items: # with_items is a looping concept
+        - build-essential
+        - python-dev
+        - python-pip
+   become: yes   # as "sudo"
+
+ - name: Install a bunch of packages via python
+   pip: name={{ item }} state=latest
+   with_items:
+        - shade
+   become: yes   # as "sudo"
+...
+

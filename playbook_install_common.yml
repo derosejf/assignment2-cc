@@ -1,0 +1,41 @@
+---
+#
+# Playbook to be used by Webserver. Installs the necessary packages and
+# configures the files to be necessary to start up.
+
+ - name: Install packages via apt (apache, mysql, git, php)
+   apt:
+     name: ['build-essential', 'python-dev', 'python-pip',
+            'apache2', 'mysql-server', 'git', 'php']
+     state: latest  # latest version
+     update_cache: yes  # essentially, run apt-get update first
+   become: yes   # as "sudo"
+
+ - name: Delete directory for the ww
+   file:
+     path: /var/www/html
+     state: absent
+   become: yes
+
+ - name: Create directory for the www
+   file:
+     path: /var/www/html
+     state: directory
+     mode: 0777
+   become: yes
+
+ - name: Install Github Repo
+   git:
+     repo: https://github.com/doc-vu/phpMySQLapp.git
+     dest: /var/www/html/
+   become: yes
+
+ - name: enabled mod_rewrite
+   apache2_module:
+     name: rewrite
+     state: present
+   notify:
+     - restart apache2
+   become: yes
+...
+

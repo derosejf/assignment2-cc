@@ -1,0 +1,16 @@
+---
+- hosts: MyLocalVMs
+  remote_user: ubuntu
+
+  vars_prompt:
+    - name: "some_password"
+      prompt: "Enter password"
+      private: yes
+
+  tasks:
+
+  - name: Display password
+    shell: echo Password = "{{ some_password }}"
+    register: output
+
+  - debug: var=output
