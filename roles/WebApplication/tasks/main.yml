@@ -1,0 +1,9 @@
+---
+#
+# Main script for deploying the front end webserver.
+
+## set up the github repository and 
+- include: copy_code.yml
+
+
+...

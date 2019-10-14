@@ -4,6 +4,11 @@
 # Spawns 2 VMs in the cloud (IPs, etc.) and pushes relevant scripts to the
 # Web Server
 
+## FIXME: Need to spawn the VMs here and wait for them to deploy
+## - name: SpawnVMs
+## use hosts file variables i think?
+
+
 - name: Deploying WebApplications
   hosts: all
   become_user: root
@@ -17,6 +22,8 @@
     - name: install python
       raw: test -e /usr/bin/python || (apt -y update && apt install -y python)
 
-  ## Spawn VMS
+
+  ## FIXME: Copy code to the web application
+  
   - include: webapp.yml
 ...
