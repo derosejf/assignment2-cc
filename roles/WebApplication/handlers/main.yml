@@ -1,0 +1,9 @@
+---
+#
+# List of common handlers for use in the WebApp
+# Restart apache is most important
+
+- name: restart apache2
+  service: name=apache2 state=restarted
+
+...

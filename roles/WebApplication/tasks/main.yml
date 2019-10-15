@@ -2,12 +2,13 @@
 #
 # Main script for deploying the front end webserver.
 
-- name: Install packages
-   apt:
-     name: common_packages
-     state: latest  # latest version
+# First install common packages/apache2
+- include: install_apache2.yml
 
-## set up the github repository and template? (maybe)
-#- include: copy_code.yml
+# Install php and configure
+- include: install_php.yml
+
+## set up the github repository and template? (
+- include: copy_code.yml
 
 ...

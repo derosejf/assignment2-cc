@@ -1,0 +1,12 @@
+---
+#
+# Install PHP, configures files, restarts apache2
+
+- name: Install php
+  apt:
+    name: "{{ ubuntu_php_packages }}"
+    state: latest
+  notify:
+    - restart apache2
+
+...

@@ -1,0 +1,20 @@
+---
+#
+# Copies the code necessary to set up the github repo
+
+- name: Delete directory for the ww
+  file:
+    path: /var/www/html
+    state: absent
+   
+- name: Create directory for the www
+  file:
+    path: /var/www/html
+    state: directory
+    mode: 0777
+
+- name: Clone Github Repo
+  git:
+    repo: "{{ path }}"
+    dest: /var/www/html/
+...
