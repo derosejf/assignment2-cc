@@ -8,7 +8,6 @@
 # Install php and configure
 - include: install_php.yml
 
-## set up the github repository and template? (
+## set up the github repository and (template?)
 - include: copy_code.yml
-
 ...

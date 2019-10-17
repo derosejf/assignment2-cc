@@ -3,10 +3,32 @@
 # Script main to call the roles for the WebApp and DBServer. Really just defines
 # variables and executes roles
 
-- hosts: localhost
+- hosts: webserver
   become_user: root
   become: true
   become_method: sudo
+
+  gather_facts: no
+
+  pre_tasks:
+    - name: install python
+      raw: test -e /usr/bin/python || (apt -y update && apt install -y python)
+
+  tasks:
+   
+    - name: Make directory test
+      file:
+        path: /vagrant/
+        state: directory
+        mode: 0777
+
+    - name: Copy test
+      copy:
+        src: /vagrant/webapp.yml
+        dest: /vagrant/webapp.yml
+        owner: root
+        group: root
+        mode: '0644'
 
   vars:
     - path: https://github.com/doc-vu/phpMySQLapp.git
@@ -24,6 +46,7 @@
         - build-essential
         - python-pip
 
-  roles:
-    - WebApplication
+  #roles:
+  #  - WebApplication
+  #  - DBApplication
 ...

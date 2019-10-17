@@ -1,0 +1,10 @@
+---
+#
+# Copies the code necessary to set up the github repo
+
+- name: Clone Github Repo (DB)
+  git:
+    repo: "{{ path }}"
+    dest: ~/
+
+...

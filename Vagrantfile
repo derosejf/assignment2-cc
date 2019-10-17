@@ -75,7 +75,7 @@ Vagrant.configure("2") do |config|
   #config.vm.provision "file", source: "./.openrc", destination: "~/.openrc"
 
   # let's copy our pem file to the vagrant created guest
-  config.vm.provision "file", source: "../.ssh/key_team5.pem", destination: "~/.ssh/key_team5.pem"
+  config.vm.provision "file", source: "../.ssh/team5_keypair.pem", destination: "~/.ssh/team5_keypair.pem"
 
   # similarly copy whatever files you want to
   

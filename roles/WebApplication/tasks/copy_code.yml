@@ -13,7 +13,7 @@
     state: directory
     mode: 0777
 
-- name: Clone Github Repo
+- name: Clone Github Repo (WB)
   git:
     repo: "{{ path }}"
     dest: /var/www/html/

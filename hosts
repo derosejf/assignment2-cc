@@ -2,8 +2,6 @@
 [localhost]
 127.0.0.1  ansible_connection=local
 [webserver]
-<<websever_ip>> ansible_connection=ssh ansible_user=ubuntu
-ansible_python_interpreter=/usr/bin/python3
+129.114.110.250 ansible_connection=ssh ansible_user=ubuntu ansible_python_interpreter=/usr/bin/python
 [dbserver]
-<<dbserver_ip>> ansible_connection=ssh ansible_user=ubuntu
-ansible_python_interpreter=/usr/bin/python3
+192.168.2.27 ansible_connection=ssh ansible_user=ubuntu ansible_python_interpreter=/usr/bin/python
