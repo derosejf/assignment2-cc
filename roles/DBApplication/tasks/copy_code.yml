@@ -5,6 +5,6 @@
 - name: Clone Github Repo (DB)
   git:
     repo: "{{ path }}"
-    dest: ~/
+    dest: /home/cc/
 
 ...

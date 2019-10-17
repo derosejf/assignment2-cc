@@ -14,22 +14,26 @@
   pre_tasks:
     - name: install python
       raw: test -e /usr/bin/python || (apt -y update && apt install -y python)
-
-  tasks:
+    - name: install pip
+      raw: sudo apt-get install -y python-dev python-pip
+    - name: upgrade pip
+      raw: pip install --upgrade pip
+    
+  #tasks:
    
-    - name: Make directory test
-      file:
-        path: /vagrant/
-        state: directory
-        mode: 0777
+    #- name: Make directory test
+    #  file:
+    #    path: /vagrant/
+    #    state: directory
+    #    mode: 0777
 
-    - name: Copy test
-      copy:
-        src: /vagrant/webapp.yml
-        dest: /vagrant/webapp.yml
-        owner: root
-        group: root
-        mode: '0644'
+    #- name: Copy test
+    #  copy:
+    #    src: /vagrant/webapp.yml
+    #    dest: /vagrant/webapp.yml
+    #    owner: root
+    #    group: root
+    #    mode: '0644'
 
   vars:
     - path: https://github.com/doc-vu/phpMySQLapp.git
@@ -46,6 +50,13 @@
         - mysql-server
         - build-essential
         - python-pip
+
+      mysql_port: 3306
+
+      pip_packages:
+        - PyMySQL
+        #- libselinux-python
+        #- libsemanage-python
 
   roles:
   #  - WebApplication

@@ -1,17 +1,18 @@
 ---
 # 
 # Install the packages, github and SQL server
+#- name: Starting DBApp
+#  hosts: localhost
+#  become_user: root
+#  become: true
+#  become_method: sudo
 
-# Install packages
-- name: Install packages
-  apt:
-    - name: "{{ common_packages }}"
-      state: latest
 
+#  tasks:
+    # Install packages
 # Copy github repository
 - include: copy_code.yml
 
 # Set up SQL
 - include: mysql.yml
-
 ...
