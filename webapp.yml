@@ -3,7 +3,8 @@
 # Script main to call the roles for the WebApp and DBServer. Really just defines
 # variables and executes roles
 
-- hosts: webserver
+- name: Starting WebApp
+  hosts: localhost
   become_user: root
   become: true
   become_method: sudo
@@ -46,7 +47,7 @@
         - build-essential
         - python-pip
 
-  #roles:
+  roles:
   #  - WebApplication
-  #  - DBApplication
+    - DBApplication
 ...
