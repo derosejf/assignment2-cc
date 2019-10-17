@@ -29,7 +29,6 @@
     - name: install open stack
       raw: pip install --user openstacksdk
 
-## FIXME: Need to spawn the VMs here and wait for them to deploy
 #- name: SpawnVM1
 #  hosts: localhost
 #  tasks:
@@ -97,7 +96,11 @@
 #      auto_ip: no
 
 
-## FIXME: Copy code to the web application   
+## FIXME: Copy code to the web application
+
+   task:
+     - name: Add permissions properly to the private key
+       raw: chmod 0600 /home/vagrant/.ssh/team5_keypair.pem
 
 - include: webapp.yml
 ...

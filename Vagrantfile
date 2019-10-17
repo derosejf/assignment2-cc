@@ -77,11 +77,9 @@ Vagrant.configure("2") do |config|
   # let's copy our pem file to the vagrant created guest
   config.vm.provision "file", source: "../.ssh/team5_keypair.pem", destination: "~/.ssh/team5_keypair.pem"
 
-  # similarly copy whatever files you want to
-  
-  # We now use the Ansible provisioner to install software. It is assumed you
-  # have a playbook called playbook_master.yml
-  #
+  config.vm.provision "file", source: ".ansible.cfg", destination: "~/.ansible.cfg"
+
+
   # in the following, install= true will install ansible in the
   # created or provisioned guest vm. Once ansible is installed, any
   # additional configuration we plan to do will be taken from the

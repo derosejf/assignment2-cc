@@ -17,10 +17,11 @@
   - restart mysql
 
 - name: Start Mysql Service
-  service: name=mysqld state=started enabled=yes
+  service: name=mysql state=started enabled=yes
 
 - name: Create a new database with name bookstore
   mysql_db:
+    login_unix_socket: /var/run/mysqld/mysqld.sock
     name: bookstore
     state: import
     target: /home/cc/mySqlDB/bookDB.sql
@@ -28,16 +29,12 @@
 
 - name: Create a new database with name moviedb
   mysql_db:
+    login_unix_socket: /var/run/mysqld/mysqld.sock
     name: moviedb
     state: import
     target: /home/cc/mySqlDB/movieDB.sql
     collation: utf8_unicode_ci
 
-#- name: Set username and password for mysql
-#  mysql_user:
-#    login_unix_socket: /var/run/mysqld/mysqld.sock
-#    name: root
-#    password: password
-#    priv: *.*:ALL host='%'
-#    state: present
+- name: Create Application DB User
+  mysql_user: name=root password=password priv=*.*:ALL host='%' state=present login_unix_socket=/var/run/mysqld/mysqld.sock
 ...
