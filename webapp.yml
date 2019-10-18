@@ -14,26 +14,15 @@
   pre_tasks:
     - name: install python
       raw: test -e /usr/bin/python || (apt -y update && apt install -y python)
-    - name: install pip
-      raw: sudo apt-get install -y python-dev python-pip
-    - name: upgrade pip
-      raw: pip install --upgrade pip
+  #  - name: install pip
+  #    raw: sudo apt-get install -y python-dev python-pip
+  #  - name: upgrade pip
+  #    raw: pip install --upgrade pip
+  #  - name: install ansible
+  #    raw: sudo apt-get install -y ansible
   
   #tasks:
-   
-    #- name: Make directory test
-    #  file:
-    #    path: /vagrant/
-    #    state: directory
-    #    mode: 0777
-
-    #- name: Copy test
-    #  copy:
-    #    src: /vagrant/webapp.yml
-    #    dest: /vagrant/webapp.yml
-    #    owner: root
-    #    group: root
-    #    mode: '0644'
+  #  - include: copy_resources.yml
 
   vars:
     - path: https://github.com/doc-vu/phpMySQLapp.git
@@ -61,7 +50,16 @@
   roles:
     - WebApplication
 
-
-  ## Connect to DB HERE
-    #- DBApplication
+#- name: Connect to DB and run roles
+#  hosts: dbserver
+#  user: root
+#  become: yes
+#  become_method: sudo
+#
+#  pre_tasks:
+#    - name: install python
+#      raw: test -e /usr/bin/python || (apt -y update && apt install -y python)
+#  
+#  roles:
+#    - DBApplication
 ...

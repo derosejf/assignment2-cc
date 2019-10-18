@@ -1,0 +1,50 @@
+---
+#
+# Copies code from the local machine to the webserver
+
+- name: Make directory test
+  file:
+    path: /vagrant/
+    state: directory
+    mode: 0777
+
+- name: Copy webapp.yml
+  copy:
+    src: /vagrant/webapp.yml
+    dest: /vagrant/webapp.yml
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Copy roles
+  copy:
+    src: /vagrant/roles/
+    dest: /vagrant/roles/
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Copy hosts
+  copy:
+    src: /vagrant/hosts
+    dest: /vagrant/hosts
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Copy .ansible.cfg
+  copy:
+    src: /home/vagrant/.ansible.cfg
+    dest: /home/cc/.ansible.cfg
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Copy private key
+  copy:
+    src: /home/vagrant/.ssh/team5_keypair.pem
+    dest: /home/cc/.ssh/team5_keypair.pem
+    owner: root
+    group: root
+    mode: '0600'
+...

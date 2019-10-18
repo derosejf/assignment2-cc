@@ -4,12 +4,6 @@
 # Spawns 2 VMs in the cloud (IPs, etc.) and pushes relevant scripts to the
 # Web Server
 
-
-## FIXME: Need to spawn the VMs here and wait for them to deploy
-## - name: SpawnVMs
-## use hosts file variables i think?
-
-
 - name: Deploying WebApplications
   hosts: localhost ## FIXME: change back to all
   become_user: vagrant
@@ -98,9 +92,9 @@
 
 ## FIXME: Copy code to the web application
 
-   task:
-     - name: Add permissions properly to the private key
-       raw: chmod 0600 /home/vagrant/.ssh/team5_keypair.pem
+  tasks:
+    - name: Add permissions properly to the private key
+      raw: chmod 0600 /home/vagrant/.ssh/team5_keypair.pem
 
 - include: webapp.yml
 ...

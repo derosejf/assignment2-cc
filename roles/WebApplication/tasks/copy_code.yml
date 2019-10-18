@@ -17,4 +17,13 @@
   git:
     repo: "{{ path }}"
     dest: /var/www/html/
+
+## FIXME: these need to be local variables
+
+## Grep IP's into index files
+- name: Writing IP to books DB
+  raw: sed -i -e 's/127.0.0.1/192.168.2.27/g' /var/www/html/books/includes/bookDatabase.php
+
+- name: Writing IP to movies DB
+  raw: sed -i -e 's/127.0.0.1/192.168.2.27/g' /var/www/html/movies/includes/movieDatabase.php 
 ...
