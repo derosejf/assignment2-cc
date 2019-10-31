@@ -23,71 +23,73 @@
     - name: install open stack
       raw: pip install --user openstacksdk
 
-#- name: SpawnVM1
-#  hosts: localhost
-#  tasks:
-#  - name: launch an instance
-#    os_server:
-#      state: present
-#      auth:
-#        auth_url: https://openstack.tacc.chameleoncloud.org:5000/v2.0
-#        username: "wilsonhk"
-#        password: "Password123"
-#        project_name: CH-819381
-#      name: team5_webserver
-#      image: CC-Ubuntu18.04-20190918
-#      key_name: team5_keypair
-#      wait: yes
-#      flavor: m1.small
-#      availability_zone: nova
-#      timeout: 200
-#      nics:
-#        - net-id: da34df32-e807-4335-8d8d-c91760dfcd3a
-#      security_groups: 
-#        - default
-#	 - ENABLE_HTTP_HTTPS
-#	 - ENABLE_PORT_3306
-#      auto_ip: no
-#
-#- name: AttachIP
-#  hosts: localhost
-#  tasks:
-#  - name : attach IP
-#    os_floating_ip:
-#      auth:
-#        auth_url: https://openstack.tacc.chameleoncloud.org:5000/v2.0
-#        username: "wilsonhk"
-#        password: "Password123"
-#        project_name: CH-819381
-#      state: present
-#      server: team5_webserver
-#
-#
-#- name: SpawnVM2
-#  hosts: localhost
-#  tasks:
-#  - name: launch an instance
-#    os_server:
-#      state: present
-#      auth:
-#        auth_url: https://openstack.tacc.chameleoncloud.org:5000/v2.0
-#        username: "wilsonhk"
-#        password: "Password123"
-#        project_name: CH-819381
-#      name: team5_database
-#      image: CC-Ubuntu18.04-20190918
-#      key_name: team5_keypair
-#      wait: yes
-#      flavor: m1.small
-#      availability_zone: nova
-#      timeout: 1000
-#      nics:
-#        - net-id: da34df32-e807-4335-8d8d-c91760dfcd3a
-#      security_groups: 
-#        - default
-#        - ENABLE_PORT_3306
-#    
-#      auto_ip: no
+- name: SpawnVM1
+  hosts: localhost
+  tasks:
+  - name: launch an instance
+    os_server:
+      state: present
+      auth:
+        auth_url: https://openstack.tacc.chameleoncloud.org:5000/v2.0
+        username: "wilsonhk"
+        password: "Password123"
+        project_name: CH-819381
+      name: team5_webserver
+      image: CC-Ubuntu18.04-20190918
+      key_name: team5_keypair
+      wait: yes
+      flavor: m1.small
+      availability_zone: nova
+      timeout: 500
+      nics:
+        - net-id: da34df32-e807-4335-8d8d-c91760dfcd3a
+      security_groups: 
+        - default
+        - ENABLE_HTTP_HTTPS
+        - ENABLE_PORT_3306
+
+      auto_ip: no
+
+- name: AttachIP
+  hosts: localhost
+  tasks:
+  - name : attach IP
+    os_floating_ip:
+      auth:
+        auth_url: https://openstack.tacc.chameleoncloud.org:5000/v2.0
+        username: "wilsonhk"
+        password: "Password123"
+        project_name: CH-819381
+      state: present
+      server: team5_webserver
+
+
+- name: SpawnVM2
+  hosts: localhost
+  tasks:
+  - name: launch an instance
+    os_server:
+      state: present
+      auth:
+        auth_url: https://openstack.tacc.chameleoncloud.org:5000/v2.0
+        username: "wilsonhk"
+        password: "Password123"
+        project_name: CH-819381
+      name: team5_database
+      image: CC-Ubuntu18.04-20190918
+      key_name: team5_keypair
+      wait: yes
+      flavor: m1.small
+      availability_zone: nova
+      timeout: 500
+      nics:
+        - net-id: da34df32-e807-4335-8d8d-c91760dfcd3a
+      security_groups: 
+        - default
+        - ENABLE_PORT_3306
+    
+      auto_ip: no
+
 
 
 ## FIXME: Copy code to the web application

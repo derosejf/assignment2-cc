@@ -2,6 +2,6 @@
 [localhost]
 127.0.0.1  ansible_connection=local
 [webserver]
-129.114.110.250 ansible_connection=ssh ansible_user=cc ansible_python_interpreter=/usr/bin/python
+129.114.111.7 ansible_connection=ssh ansible_user=cc ansible_python_interpreter=/usr/bin/python
 [dbserver]
-192.168.2.27 ansible_connection=ssh ansible_user=cc ansible_python_interpreter=/usr/bin/python
+192.168.2.120 ansible_connection=ssh ansible_user=cc ansible_python_interpreter=/usr/bin/python

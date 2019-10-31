@@ -14,15 +14,20 @@
   pre_tasks:
     - name: install python
       raw: test -e /usr/bin/python || (apt -y update && apt install -y python)
-  #  - name: install pip
-  #    raw: sudo apt-get install -y python-dev python-pip
-  #  - name: upgrade pip
-  #    raw: pip install --upgrade pip
-  #  - name: install ansible
-  #    raw: sudo apt-get install -y ansible
-  
-  #tasks:
-  #  - include: copy_resources.yml
+    - name: install pip
+      raw: sudo apt-get install -y python-dev python-pip
+    - name: upgrade pip
+      raw: pip install --upgrade pip
+    - name: install ansible
+      raw: sudo apt-get install -y ansible
+
+
+  tasks:
+    - include: copy_resources.yml
+
+    - name: Add permissions properly to the private key
+      raw: chmod 0600 /home/cc/.ssh/team5_keypair.pem
+
 
   vars:
     - path: https://github.com/doc-vu/phpMySQLapp.git
